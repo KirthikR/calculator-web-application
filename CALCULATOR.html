@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirthik Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            padding: 20px;
+        }
+
+        .screen {
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+            font-size: 24px;
+            padding: 10px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 5px;
+        }
+
+        button {
+            background-color: #e0e0e0;
+            border: none;
+            color: #444;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 15px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ccc;
+        }
+
+        button.operator {
+            background-color: #f59f0e;
+            color: #fff;
+        }
+
+        button.clear {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        button.equals {
+            background-color: #3498db;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="screen" id="screen">🧮</div>
+        <div class="buttons">
+            <button onclick="clearScreen()" class="clear">AC</button>
+            <button onclick="appendCharacter('7')">7</button>
+            <button onclick="appendCharacter('8')">8</button>
+            <button onclick="appendCharacter('9')">9</button>
+            <button onclick="appendCharacter('4')">4</button>
+            <button onclick="appendCharacter('5')">5</button>
+            <button onclick="appendCharacter('6')">6</button>
+            <button onclick="appendCharacter('1')">1</button>
+            <button onclick="appendCharacter('2')">2</button>
+            <button onclick="appendCharacter('3')">3</button>
+            <button onclick="appendCharacter('0')">0</button>
+            <button onclick="appendCharacter('.')">.</button>
+            <button onclick="appendCharacter('+')" class="operator">➕</button>
+            <button onclick="appendCharacter('-')" class="operator">➖</button>
+            <button onclick="appendCharacter('*')" class="operator">✖️</button>
+            <button onclick="appendCharacter('/')" class="operator">➗</button>
+            <button onclick="calculate()" class="equals">=</button>
+        </div>
+    </div>
+
+    <script>
+        let screen = document.getElementById('screen');
+
+        function appendCharacter(char) {
+            if (screen.innerText === '🧮') {
+                screen.innerText = '';
+            }
+            screen.innerText += char;
+        }
+
+        function clearScreen() {
+            screen.innerText = '🧮';
+        }
+
+        function calculate() {
+            try {
+                screen.innerText = eval(screen.innerText);
+            } catch (error) {
+                screen.innerText = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
